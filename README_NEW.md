@@ -59,6 +59,8 @@ cp .env.example .env
 
 ### 3. 初始化数据库
 
+确保 PostgreSQL 已运行，然后使用以下命令创建表结构：
+
 ```python
 # 在 Python shell 中运行
 from sqlalchemy import create_engine
@@ -155,6 +157,8 @@ class CustomProvider(BaseLLMProvider):
 
 ### 添加新工具
 
+实现 LangChain 的 `@tool` 装饰器即可：
+
 ```python
 from langchain_core.tools import tool
 
@@ -194,7 +198,7 @@ async def custom_endpoint():
 
 ## 生产部署
 
-### Docker 部署
+### Docker 部署（推荐）
 
 ```dockerfile
 FROM python:3.10-slim
@@ -208,16 +212,24 @@ CMD ["uvicorn", "app.server:app", "--host", "0.0.0.0", "--port", "5513"]
 
 ### 性能优化
 
-- Gunicorn + Uvicorn workers
-- 数据库连接池
-- Redis 缓存
-- Nginx 反向代理
+- 使用 Gunicorn + Uvicorn workers
+- 启用数据库连接池
+- 配置 Redis 缓存
+- 使用 Nginx 反向代理
 
 ## 开发指南
 
+### 运行测试
+
 ```bash
 pytest tests/
+```
+
+### 代码格式化
+
+```bash
 ruff check app/
+ruff format app/
 ```
 
 ## 贡献
