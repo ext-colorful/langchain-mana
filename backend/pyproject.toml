@@ -1,0 +1,40 @@
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+# 忽略文档字符串格式相关的规则
+ignore = [
+    "D100", "D101", "D102", "D103", "D104", "D105", "D106", "D107",  # Missing docstrings
+    "D200", "D201", "D202", "D203", "D204", "D205", "D206", "D207",  # Docstring formatting
+    "D208", "D209", "D210", "D211", "D212", "D213", "D214", "D215",  # Docstring whitespace
+    "D300", "D301", "D400", "D401", "D402", "D403", "D404", "D405",  # Docstring content
+    "D406", "D407", "D408", "D409", "D410", "D411", "D412", "D413",  # Docstring sections
+    "D414", "D415", "D416", "D417",  # Docstring punctuation
+]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-agent-platform"
+version = "1.0.0"
+description = "Enterprise-grade AI Agent Platform"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.109.0",
+    "uvicorn[standard]>=0.27.0",
+    "langchain>=0.1.0",
+    "langchain-openai>=0.0.2",
+    "chromadb>=0.4.22",
+    "sqlalchemy>=2.0.25",
+    "asyncpg>=0.29.0",
+]
